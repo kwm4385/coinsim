@@ -1,4 +1,6 @@
-This is your new Play application
+B⃦ CoinSim Bitcoin Trading Simulator
 =================================
 
-This file will be packaged with your application, when using `activator dist`.
+This file will be packaged with the application, when using `activator dist`.
+
+Docs coming soon.
