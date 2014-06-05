@@ -1,3 +1,5 @@
+@(user: User = null)
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,12 +54,21 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	 <li>
-                	 	<a href="/signup">Sign up</a>
-                	 </li>
-               		 <li>
-               		 	<form action="/login">­<button type="Submit" class="btn btn-primary navbar-btn">Log In</button></form>
-               		 </li>
+                	@if(user == null) {
+	                	 <li>
+	                	 	<a href="/signup">Sign up</a>
+	                	 </li>
+	               		 <li>
+	               		 	<form action="/login">­<button type="Submit" class="btn btn-info navbar-btn">Log In</button></form>
+	               		 </li>
+               		 } else {
+               		 	 <li>
+	                	 	<a href="/logout">Log Out</a>
+	                	 </li>
+	               		 <li>
+	               		 	<form action="/dashboard">­<button type="Submit" class="btn btn-warning navbar-btn">My Dashboard</button></form>
+	               		 </li>
+               		 }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -74,7 +85,7 @@
                         <a class="btn btn-default" href="#about">Click me!</a>
                     </div>
                     <br>
-                    <p>Intro Here</p>
+                    <p>Intro Here User: @user</p>
                 </div>
             </div>
         </div>

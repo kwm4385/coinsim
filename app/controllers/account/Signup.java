@@ -26,7 +26,7 @@ import java.util.UUID;
 import static play.data.Form.form;
 
 /**
- * Signup to PlayStartApp : save and send confirm mail.
+ * Signup to CoinSim : save and send confirm mail.
  * <p/>
  * User: yesnault
  * Date: 31/01/12

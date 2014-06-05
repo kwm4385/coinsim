@@ -4,7 +4,10 @@ import models.Token;
 import models.User;
 import models.utils.AppException;
 import models.utils.Mail;
+
 import org.apache.commons.mail.EmailException;
+
+import controllers.Application;
 import play.Logger;
 import play.data.Form;
 import play.data.validation.Constraints;
@@ -169,7 +172,7 @@ public class Reset extends Controller {
             // Send email saying that the password has just been changed.
             sendPasswordChanged(user);
             flash("success", Messages.get("resetpassword.success"));
-            return ok(reset.render(resetForm, token));
+            return Application.GO_HOME;
         } catch (AppException e) {
             flash("error", Messages.get("error.technical"));
             return badRequest(reset.render(resetForm, token));

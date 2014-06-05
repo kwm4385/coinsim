@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Send a mail with PlayStartApp.
+ * Send a mail with CoinSim.
  * <p/>
  * User: yesnault
  * Date: 24/01/12

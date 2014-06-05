@@ -55,6 +55,9 @@ public class Authentication extends Controller {
 
         @Constraints.Required
         public String inputPassword;
+        
+        @Constraints.Required
+        public String repeatPassword;
 
         /**
          * Validate the authentication.
@@ -68,6 +71,10 @@ public class Authentication extends Controller {
 
             if (isBlank(inputPassword)) {
                 return "Password is required";
+            }
+            
+            if(!inputPassword.equals(repeatPassword)) {
+            	return "Passwords do not match";
             }
 
             return null;

@@ -12,7 +12,7 @@
     <title>CoinSim</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
 
     <!-- Custom CSS -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic' rel='stylesheet' type='text/css'>
@@ -49,12 +49,21 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	 <li>
-                	 	<a href="/signup">Sign up</a>
-                	 </li>
-               		 <li>
-               		 	<form action="/login">­<button type="Submit" class="btn btn-primary navbar-btn">Log In</button></form>
-               		 </li>
+                	 @if(user == null) {
+	                	 <li>
+	                	 	<a href="/signup">Sign up</a>
+	                	 </li>
+	               		 <li>
+	               		 	<form action="/login">­<button type="Submit" class="btn btn-info navbar-btn">Log In</button></form>
+	               		 </li>
+               		 } else {
+               		 	 <li>
+	                	 	<a href="/logout">Log Out</a>
+	                	 </li>
+	               		 <li>
+	               		 	<form action="/dashboard">­<button type="Submit" class="btn btn-warning navbar-btn">My Dashboard</button></form>
+	               		 </li>
+               		 }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -71,6 +80,7 @@
     <!-- Core JavaScript Files -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    @scripts
 
 </body>
 

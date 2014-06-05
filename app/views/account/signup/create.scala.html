@@ -1,17 +1,21 @@
 @(signupForm: Form[Authentication.Register])
 
-    @scripts = {
-        <script src="@routes.Assets.at("javascripts/password.js")" type="text/javascript"></script>
-    }
 
-@main(null, scripts) {
+@main(null, null) {
     <div class="span3">
             &nbsp;
     </div>
 
-    <div class="span12">
-        <div class="well">
-        @createFormOnly(signupForm)
+    <div class="row">
+    	<div class="col-lg-6 col-lg-offset-3">
+	        <div class="well">
+	        @if(signupForm.hasGlobalErrors) {
+		        <p class="error">
+		            <span class="label label-danger">@signupForm.globalError.message</span>
+		        </p>
+		    }
+	        @createFormOnly(signupForm)
+	        </div>
         </div>
     </div>
 }

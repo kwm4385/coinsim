@@ -12,11 +12,11 @@ import views.html.index;
 public class Application extends Controller {
 
     public static Result GO_HOME = redirect(
-            routes.Application.index()
+        routes.Application.index()
     );
 
     public static Result GO_DASHBOARD = redirect(
-            routes.Dashboard.index()
+        routes.Dashboard.index()
     );
 
     /**
@@ -25,7 +25,7 @@ public class Application extends Controller {
      * @return login page or dashboard
      */
     public static Result index() {
-        return ok(index.render());
+    	return ok(index.render(User.findByEmail(request().username())));
     }
 
 }
