@@ -87,7 +87,7 @@ public class Authentication extends Controller {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
 
         if (loginForm.hasErrors()) {
-            return badRequest(login.render(loginForm));
+            return badRequest(loginpage.render(loginForm));
         } else {
             session("email", loginForm.get().email);
             return Application.GO_DASHBOARD;
@@ -117,7 +117,6 @@ public class Authentication extends Controller {
                 session().clear();
             }
         }
-
         return ok(loginpage.render(form(Authentication.Login.class)));
     }
 
