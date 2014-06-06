@@ -4,44 +4,34 @@
 # --- !Ups
 
 create table token (
-  token                     varchar(255) not null,
-  user_id                   bigint,
+  token                     varchar(255) primary key,
+  user_id                   integer,
   type                      varchar(8),
   date_creation             timestamp,
   email                     varchar(255),
-  constraint ck_token_type check (type in ('password','email')),
-  constraint pk_token primary key (token))
+  constraint ck_token_type check (type in ('password','email')))
 ;
 
 create table user (
-  id                        bigint not null,
+  id                        integer primary key AUTOINCREMENT,
   email                     varchar(255),
   confirmation_token        varchar(255),
   password_hash             varchar(255),
   date_creation             timestamp,
-  validated                 boolean,
-  constraint uq_user_email unique (email),
-  constraint pk_user primary key (id))
+  validated                 integer(1),
+  constraint uq_user_email unique (email))
 ;
-
-create sequence token_seq;
-
-create sequence user_seq;
 
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+PRAGMA foreign_keys = OFF;
 
-drop table if exists token;
+drop table token;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists token_seq;
-
-drop sequence if exists user_seq;
+PRAGMA foreign_keys = ON;
 
