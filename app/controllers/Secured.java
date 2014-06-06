@@ -1,6 +1,5 @@
 package controllers;
 
-import play.Logger;
 import play.mvc.*;
 
 public class Secured extends Security.Authenticator {

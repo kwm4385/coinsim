@@ -11,7 +11,7 @@ GET     /dashboard/price            controllers.Dashboard.price()
 
 # Authentication and accounts
 POST    /login                      controllers.Authentication.authenticate()
-GET     /login                      controllers.Authentication.login
+GET     /login                      controllers.Authentication.login()
 GET     /logout                     controllers.Authentication.logout()
 
 GET     /settings                   controllers.account.settings.Index.index()

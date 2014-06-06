@@ -27,7 +27,7 @@ public class PriceData {
 	
 	private static final PriceUpdater PRICE_UPDATER = new PriceUpdater();
 	
-	private static double price;
+	private static double price = -1;
 	private static Date lastUpdated = new Date(0L);
 	private static String exchange = "bitstamp";
 	
@@ -55,22 +55,13 @@ public class PriceData {
 		return exchange;
 	}
 	
-	static {
-		try {
-			PRICE_UPDATER.apply();
-		} catch (Throwable e) {
-			Logger.error("Error fetching price data");
-		}
-		Logger.debug("Init price info");
-	}
-	
 	/**
 	 * Updates the price and last updated time. **Blocking**
 	 */
 	private static class PriceUpdater implements Function0<Double> {
 		@Override
 		public Double apply() throws Throwable {
-			if(((new Date().getTime() - lastUpdated.getTime()) / 1000) > CACHE_LIFE) {
+			if((((new Date().getTime() - lastUpdated.getTime()) / 1000) > CACHE_LIFE) || price == -1) {
 				Logger.debug("Fetching new price");
 				try {
 					URLConnection api = new URL(API_URL).openConnection();
