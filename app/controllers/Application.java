@@ -25,7 +25,7 @@ public class Application extends Controller {
      * @return login page or dashboard
      */
     public static Result index() {
-    	return ok(index.render(User.findByEmail(request().username())));
+    	return ok(index.render(User.findByEmail(ctx().session().get("email"))));
     }
 
 }

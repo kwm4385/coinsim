@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic' rel='stylesheet' type='text/css'>
@@ -58,9 +59,13 @@
 	               		 	<form action="/login">­<button type="Submit" class="btn btn-info navbar-btn">Log In</button></form>
 	               		 </li>
                		 } else {
-               		 	 <li>
-	                	 	<a href="/logout">Log Out</a>
-	                	 </li>
+               		 	<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @user.email <b class="caret"></b></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="@controllers.account.settings.routes.Index.index()"><span class="glyphicon glyphicon-flash"></span> Settings</a></li>
+				            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
+				          </ul>
+				        </li>
 	               		 <li>
 	               		 	<form action="/dashboard">­<button type="Submit" class="btn btn-warning navbar-btn">My Dashboard</button></form>
 	               		 </li>

@@ -1,9 +1,10 @@
 @(user: User)(content: Html)
 
 @main(user) {
-
+	<h2>Account Settings</h2>
+	<br/>
     <div class="row">
-        <div class="col col-lg-4">
+        <div class="col col-lg-4 well">
             <ul class="nav nav-pills nav-stacked">
                 <li>
                     <a href="@controllers.account.settings.routes.Password.index">@Messages("password")</a>
@@ -14,7 +15,7 @@
             </ul>
         </div>
         <div class="col col-lg-8">
-        @content
+        	@content
         </div>
     </div>
 }
