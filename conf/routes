@@ -4,8 +4,12 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /dashboard                  controllers.Dashboard.index()
 
+# Dashboard
+GET     /dashboard                  controllers.Dashboard.index()
+GET     /dashboard/price            controllers.Dashboard.price()  
+
+# Authentication and accounts
 POST    /login                      controllers.Authentication.authenticate()
 GET     /login                      controllers.Authentication.login()
 GET     /logout                     controllers.Authentication.logout()
