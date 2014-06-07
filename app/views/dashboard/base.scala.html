@@ -1,0 +1,97 @@
+@(user: User, title: String, active : String)(content: Html)
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CoinSim - @title</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="/assets/stylesheets/dashboard-base.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+    <div id="topnav" class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        <span class="sr-only">Coinsim</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">CoinSim</a>
+	    </div>
+	    <div class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav">
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li>
+	      		<img id="nav-loader" src="/assets/images/loader.gif" width=30 height=10/><p id="nav-ticker" class="navbar-text">$0.00 USD/BTC</p>
+	      	</li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @user.email <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="@controllers.account.settings.routes.Index.index()"><span class="glyphicon glyphicon-flash"></span> Settings</a></li>
+	            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!--/.nav-collapse -->
+    </div>
+    
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li @if(active == "Overview") {class="active"}>
+                	<a href="#">Overview</a>
+                </li>
+                <li @if(active == "Buy") {class="active"}>
+                	<a href="#">Buy</a>
+                </li>
+                <li @if(active == "Sell") {class="active"}>
+                	<a href="#">Sell</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <div class="content-header">
+                <h1>
+                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    @title
+                </h1>
+            </div>
+            <!-- All content inside inset div -->
+            <div class="page-content inset">
+                @content
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script src="/assets/javascripts/dashboard-base.js"></script>
+</body>
+
+</html>

@@ -57,6 +57,7 @@ public class PriceData {
 	
 	/**
 	 * Updates the price and last updated time. **Blocking**
+	 * TODO: Prevent concurrent requests.
 	 */
 	private static class PriceUpdater implements Function0<Double> {
 		@Override
