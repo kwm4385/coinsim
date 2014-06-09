@@ -21,9 +21,24 @@ public class Dashboard extends Controller {
 	 * @return
 	 */
     public static Result index() {
-        return ok(index.render(User.findByEmail(request().username())));
+    	User user = User.findByEmail(request().username());
+    	if(user.activeSimulation == null) {
+    		flash("level", "warning");
+    		flash("message", "<b>Hey!</b> You need to set up your first simulation.");
+    		return redirect(routes.Dashboard.simulations());
+    	} else {
+    		return ok(index.render(user));
+    	} 
     }
     
+    public static Result simulations() {
+    	return ok(simulations.render(User.findByEmail(request().username())));
+    }
+    
+    /**
+     * Returns a static page with embedded price charts.
+     * @return
+     */
     public static Result charts() {
     	return ok(charts.render(User.findByEmail(request().username())));
     }

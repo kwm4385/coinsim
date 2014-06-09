@@ -1,10 +1,6 @@
 package controllers;
 
-import static play.data.Form.form;
 import models.User;
-import controllers.Authentication.Login;
-import controllers.Authentication.Register;
-import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;

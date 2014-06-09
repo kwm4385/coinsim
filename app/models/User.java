@@ -11,15 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * User: yesnault
- * Date: 20/01/12
- */
 @Entity
 public class User extends Model {
 
     @Id
     public Long id;
+    
+    public Long activeSimulation;
 
     @Constraints.Required
     @Formats.NonEmpty

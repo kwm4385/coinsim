@@ -48,8 +48,8 @@ resetpassword.new.password=New password :
 
 changemail.mailsent=A mail has been sent, please check your mail.
 
-mail.confirm.subject=Welcome to CoinSim - Ask for confirmation
-mail.confirm.message=Welcome to CoinSim. <br> Click on this link : {0} to confirm your email.
+mail.confirm.subject=Welcome to CoinSim - Confirm your account
+mail.confirm.message=Welcome to CoinSim. <br> Click on this link : <a href="{0}">{0}</a> to confirm your email.
 
 mail.welcome.subject=Welcome to CoinSim
 mail.welcome.message=Welcome to CoinSim. <br> Your account is validated. Enjoy !
