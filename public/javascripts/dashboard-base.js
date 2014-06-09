@@ -8,3 +8,7 @@ $.getJSON("/dashboard/price.json", function(data) {
 	$("#nav-loader").hide();
 	$("#nav-ticker").css('visibility', 'visible');
 });
+
+function toggleArrow() {
+	$("#sidebar-expand").toggleClass("glyphicon-chevron-right glyphicon-chevron-left");
+}
