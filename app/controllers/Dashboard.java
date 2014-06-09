@@ -11,7 +11,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import util.PriceData;
-import views.html.dashboard.index;
+import views.html.dashboard.*;
 
 @Security.Authenticated(Secured.class)
 public class Dashboard extends Controller {
@@ -22,6 +22,10 @@ public class Dashboard extends Controller {
 	 */
     public static Result index() {
         return ok(index.render(User.findByEmail(request().username())));
+    }
+    
+    public static Result charts() {
+    	return ok(charts.render(User.findByEmail(request().username())));
     }
     
     /**

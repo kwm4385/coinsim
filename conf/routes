@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 
 # Dashboard
 GET     /dashboard                  controllers.Dashboard.index()
+GET     /dashboard/charts			controllers.Dashboard.charts()
 GET     /dashboard/price.json       controllers.Dashboard.price()  
 
 # Authentication and accounts

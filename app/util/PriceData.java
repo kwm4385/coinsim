@@ -64,13 +64,13 @@ public class PriceData {
 		public Double apply() throws Throwable {
 			if((((new Date().getTime() - lastUpdated.getTime()) / 1000) > CACHE_LIFE) || price == -1) {
 				Logger.debug("Fetching new price");
+				lastUpdated = new Date();
 				try {
 					URLConnection api = new URL(API_URL).openConnection();
 					ObjectMapper mapper = new ObjectMapper();
 					Map<String, Object> jsonMap = mapper.readValue(api.getInputStream(), Map.class);
 					price = Double.parseDouble(((Map)((Map)jsonMap.get(exchange)).get("rates")).get("ask").toString());
 					Logger.debug(Double.toString(price));
-					lastUpdated = new Date();
 				} catch (Exception e) {
 					Logger.error("Error fetching price data");
 				}
