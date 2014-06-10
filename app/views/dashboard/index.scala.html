@@ -1,7 +1,36 @@
 @(user: User, simulations: List[Simulation])
 
 @base(user, simulations, "Trading Dashboard", "Overview") {
-
+	@defining(Simulation.find.byId(user.activeSimulation)) { currentSim =>
+	    
+	    <div class="row">
+	    	<div class="col-lg-6">
+	    		<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><i class="fa fa-bank"></i> Cash on Hand</h3>
+				  </div>
+				  <div class="panel-body centered">
+				   <h1 class="money">@currentSim.dollars</h1>
+				  </div>
+				</div>
+	    	</div>
+	    	
+	    	<div class="col-lg-6">
+	    		<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><i class="fa fa-briefcase"></i> Bitcoins</h3>
+				  </div>
+				  <div class="panel-body centered">
+				   <h1><i class="fa fa-btc"></i> @currentSim.coins</h1>
+				  </div>
+				</div>
+	    	</div>
+	    </div>
     
-
+    	<div class="row">
+    		<div class="col-lg-12">
+    		
+    		</div>
+    	</div>
+    }
 }

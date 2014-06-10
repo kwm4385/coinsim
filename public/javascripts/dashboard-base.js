@@ -13,3 +13,9 @@ $.getJSON("/dashboard/price.json", function(data) {
 function toggleArrow() {
 	$("#sidebar-expand").toggleClass("glyphicon-chevron-right glyphicon-chevron-left");
 }
+
+$(document).ready(function() {
+  $(".money").each(function() {
+	  $(this).text(accounting.formatMoney($(this).text()));
+  });
+});

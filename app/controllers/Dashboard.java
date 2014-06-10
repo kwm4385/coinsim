@@ -46,6 +46,12 @@ public class Dashboard extends Controller {
      * @return
      */
     public static Result newSimulation() {
+    	User user = User.findByEmail(request().username());
+    	if(Simulation.find.where(Expr.eq("userId", user.id)).findList().size() >= 10) {
+    		flash("level", "danger");
+        	flash("message", "<b>Whoops!</b> You can only have a maximum of 10 simulations.");
+    		return redirect(routes.Dashboard.simulations());
+    	}
     	Map<String, String[]> data = request().body().asFormUrlEncoded();
     	Double bank, fee;
     	String name = data.get("name")[0];
@@ -54,11 +60,10 @@ public class Dashboard extends Controller {
         	fee = Double.parseDouble(data.get("fee")[0]);
     	} catch(NumberFormatException e) {
     		flash("level", "danger");
-        	flash("message", "<b>Whoops.</b> Simulation '" + name + "' could not be created.");
+        	flash("message", "<b>Whoops!</b> Simulation '" + name + "' could not be created.");
         	return redirect(routes.Dashboard.simulations());
     	}
     	Simulation newSim = new Simulation();
-    	User user = User.findByEmail(request().username());
     	newSim.name = name;
     	newSim.dollars = bank;
     	newSim.tradingFee = fee;
