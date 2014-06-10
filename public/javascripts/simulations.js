@@ -8,3 +8,13 @@ function selectRow(id) {
 	$("tr#"+id).addClass("success");
 	$("tr").not("#"+id).removeClass("success");
 }
+
+$(document).ready(function () {
+    $("#newSim").hide();
+    $('#showForm').click(function () {
+      $('#newSim').slideToggle("slow");
+    });
+    $('#cancelNew').click(function () {
+        $('#newSim').slideToggle("slow");
+      });
+});

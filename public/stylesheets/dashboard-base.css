@@ -13,6 +13,10 @@
 	visibility: hidden;
 }
 
+.centered {
+	text-align: center;
+}
+
 fieldset {
 	border: 0px;
 }

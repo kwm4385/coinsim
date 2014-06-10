@@ -20,7 +20,6 @@ public class Simulation extends Model {
 	public Long userId;
 	
 	@Constraints.Required
-	@Column(unique=true)
 	public String name;
 	
 	@Constraints.Required

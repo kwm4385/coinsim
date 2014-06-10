@@ -10,8 +10,7 @@ create table simulation (
   trading_fee               double,
   dollars                   double,
   coins                     double,
-  trades                    varchar(255),
-  constraint uq_simulation_name unique (name))
+  trades                    varchar(255))
 ;
 
 create table token (
