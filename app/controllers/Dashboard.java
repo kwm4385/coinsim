@@ -1,8 +1,12 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.avaje.ebean.Expr;
+
+import models.Simulation;
 import models.User;
 import play.libs.F.Promise;
 import play.libs.F.Function;
@@ -29,7 +33,9 @@ public class Dashboard extends Controller {
      * @return
      */
     public static Result simulations() {
-    	return ok(simulations.render(User.findByEmail(request().username())));
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	return ok(simulations.render(user, sims));
     }
     
     /**

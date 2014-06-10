@@ -20,6 +20,7 @@ public class Simulation extends Model {
 	public Long userId;
 	
 	@Constraints.Required
+	@Column(unique=true)
 	public String name;
 	
 	@Constraints.Required
@@ -58,4 +59,5 @@ public class Simulation extends Model {
 	}
 	
 	public static Finder<Long, Simulation> find = new Finder<Long, Simulation>(Long.class, Simulation.class); 
+
 }

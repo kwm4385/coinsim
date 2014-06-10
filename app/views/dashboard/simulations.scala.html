@@ -1,7 +1,28 @@
-@(user: User)
+@(user: User, simulations: List[Simulation])
 
-@base(user, "Active Simulations", "") {
+@base(user, "My Simulations", "") {
 
-    
+	<script src="/assets/javascripts/simulations.js"></script>
+
+    <table id="simulations" class="table table-striped table-hover">
+    	<thead>
+	    	<tr>
+	    		<th>Name</th>
+	    		<th>Bank</th>
+	    		<th>BTC</th>
+	    		<th>Net Worth</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+			@for(s <- simulations) {
+			  <tr>
+			  	<td>@s.name</td>
+			  	<td class="money">@s.dollars</td>
+			  	<td>@s.coins</td>
+			  	<td>$</td>
+			  </tr>
+			} 
+		</tbody>
+	</table>
 
 }
