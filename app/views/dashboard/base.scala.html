@@ -94,6 +94,10 @@
             </div>
             <!-- All content inside inset div -->
             <div class="page-content inset">
+            	<noscript>
+            		<div class='alert alert-danger'><strong>Warning!</strong> Please enable javascipt in your browser for this site to work correctly. 
+            		<a href="http://enable-javascript.com/" target="blank"><strong>Learn more</strong></a></div>
+            	</noscript>
             	@if(flash.get("message") != null) {
             		<div class='alert alert-@flash.get("level")'>@Html(flash.get("message"))</div>
             	}
