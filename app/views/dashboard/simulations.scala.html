@@ -29,12 +29,16 @@
 			  	<td>@s.name</td>
 			  	<td class="money">@s.dollars</td>
 			  	<td>@s.coins</td>
-			  	<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+			  	<td><a class="link-hover" onclick="$('#del-id').val('@s.id'); $('#deleteSim').submit();"><span class="glyphicon glyphicon-trash"></span></a></td>
 			  </tr>
 			}
 			</form>
 		</tbody>
 	</table>
+	
+	<form id="deleteSim" action="/dashboard/deletesim" method=POST>
+		<input id="del-id" type="hidden" name="simulation"></input>
+	</form>
 
 	<div class="row">
 		<div class="col-lg-2">

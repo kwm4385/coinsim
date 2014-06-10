@@ -17,8 +17,8 @@
 	text-align: center;
 }
 
-.close {
-	padding-bottom: 15px;
+.link-hover {
+	cursor: pointer;
 }
 
 fieldset {

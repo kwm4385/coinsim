@@ -69,6 +69,42 @@ public class Dashboard extends Controller {
     	return redirect(routes.Dashboard.simulations());
     }
     
+    /** 
+     * Deletes a simulation belonging to the current user.
+     * @return
+     */
+    public static Result deleteSimulation() {
+    	Map<String, String[]> data = request().body().asFormUrlEncoded();
+    	Long sid;
+    	try {
+    		sid = Long.parseLong(data.get("simulation")[0]);
+    	} catch(NumberFormatException e) {
+    		flash("level", "danger");
+        	flash("message", "<b>Whoops.</b> An error occured with your request.");
+        	return redirect(routes.Dashboard.simulations());
+    	}
+    	Simulation sim = Simulation.find.byId(sid);
+    	User user = User.findByEmail(request().username());
+    	if(sim.userId == user.id) {
+    		String name = sim.name;
+    		if(user.activeSimulation == sim.id) {
+    			List<Simulation> userSims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    			if(userSims.size() - 1 == 0) {
+    				user.activeSimulation = null;
+    			} else {
+    				user.activeSimulation = userSims.get(0).id;
+    			}
+    			user.save();
+    		}
+    		sim.delete();
+    		flash("level", "success");
+        	flash("message", "<b>Success!</b> '" + name + "' has been deleted.");
+    		return redirect(routes.Dashboard.simulations());
+    	} else {
+    		return forbidden();
+    	}
+    }
+    
     /**
      * Changes the user's active simulation.
      * @return
