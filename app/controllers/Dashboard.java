@@ -8,6 +8,7 @@ import com.avaje.ebean.Expr;
 
 import models.Simulation;
 import models.User;
+import play.Logger;
 import play.libs.F.Promise;
 import play.libs.F.Function;
 import play.libs.Json;
@@ -25,7 +26,9 @@ public class Dashboard extends Controller {
 	 * @return
 	 */
     public static Result index() {
-    	return resultOrNoSims(ok(index.render(User.findByEmail(request().username()))));
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	return resultOrNoSims(ok(index.render(user, sims)));
     }
     
     /**
@@ -124,9 +127,13 @@ public class Dashboard extends Controller {
     	if(sim.userId == user.id) {
     		user.activeSimulation = sid;
     		user.save();
-    		flash("level", "success");
-        	flash("message", "<b>Success!</b> You are now working in simulation '" + sim.name + "'.");
-    		return redirect(routes.Dashboard.simulations());
+    		//flash("level", "success");
+        	//flash("message", "<b>Success!</b> You are now working in simulation '" + sim.name + "'.");
+        	
+        	if(data.get("from") != null) {
+        		return redirect(data.get("from")[0]);
+        	}
+        	return redirect(routes.Dashboard.simulations());
     	} else {
     		return forbidden();
     	}
@@ -137,7 +144,9 @@ public class Dashboard extends Controller {
      * @return
      */
     public static Result charts() {
-    	return ok(charts.render(User.findByEmail(request().username())));
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	return ok(charts.render(user, sims));
     }
     
     /**

@@ -1,4 +1,4 @@
-@(user: User, title: String, active : String)(content: Html)
+@(user: User, simulations: List[Simulation], title: String, active : String)(content: Html)
 <!DOCTYPE html>
 
 <html lang="en">
@@ -45,7 +45,17 @@
 						@Simulation.find.byId(user.activeSimulation).name
 					} <b class="caret"></b></a>
 	      		<ul class="dropdown-menu">
-		            <li><a href="/dashboard/simulations">Change...</a></li>
+	      			@for(s <- simulations) {
+	      				<li>
+	      					@if(user.activeSimulation == s.id) {
+	      						<a href="#">@s.name <span class="glyphicon glyphicon-ok"></span></a>
+	      					} else {
+	      						<a href="#" onclick="$('#sim-menu-id').val('@s.id'); $('#sim-menu').submit();">@s.name</a>
+	      					}
+	      				</li>
+	      			}
+	      			<li class="divider"></li>
+		            <li><a href="/dashboard/simulations">Manage...</a></li>
 	          	</ul>
 	      	</li>
 	      </ul>
@@ -63,6 +73,11 @@
 	      </ul>
 	    </div><!--/.nav-collapse -->
     </div>
+    
+    <form id="sim-menu" action="/dashboard/changesim" method="POST">
+    	<input id="sim-menu-id" type="hidden" name="simulation"></input>
+    	<input id="sim-from" type="hidden" name="from" value="@request.uri"></input>
+    </form>
     
     <div id="wrapper">
 

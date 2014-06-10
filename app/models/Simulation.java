@@ -3,7 +3,6 @@ package models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -57,6 +56,6 @@ public class Simulation extends Model {
 		this.save();
 	}
 	
-	public static Finder<Long, Simulation> find = new Finder<Long, Simulation>(Long.class, Simulation.class); 
+	public static Model.Finder<Long, Simulation> find = new Model.Finder<Long, Simulation>(Long.class, Simulation.class); 
 
 }
