@@ -32,7 +32,7 @@ public class Simulation extends Model {
 	
 	@Constraints.Required
 	@Constraints.Min(0)
-	public Double coins;
+	public Double coins = 0.0;
 	
 	@Constraints.Required
 	public String trades;

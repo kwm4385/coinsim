@@ -39,6 +39,64 @@ public class Dashboard extends Controller {
     }
     
     /**
+     * Creates a new simulation for the current user and sets it as their active.
+     * @return
+     */
+    public static Result newSimulation() {
+    	Map<String, String[]> data = request().body().asFormUrlEncoded();
+    	Double bank, fee;
+    	String name = data.get("name")[0];
+    	try {
+    		bank = Double.parseDouble(data.get("bank")[0]);
+        	fee = Double.parseDouble(data.get("fee")[0]);
+    	} catch(NumberFormatException e) {
+    		flash("level", "danger");
+        	flash("message", "<b>Whoops.</b> Simulation '" + name + "' could not be created.");
+        	return redirect(routes.Dashboard.simulations());
+    	}
+    	Simulation newSim = new Simulation();
+    	User user = User.findByEmail(request().username());
+    	newSim.name = name;
+    	newSim.dollars = bank;
+    	newSim.tradingFee = fee;
+    	newSim.userId = user.id;
+    	newSim.save();
+    	user.activeSimulation = newSim.id;
+    	user.save();
+    	
+    	flash("level", "success");
+    	flash("message", "<b>Success!</b> Simulation '" + name + "' has been created.");
+    	return redirect(routes.Dashboard.simulations());
+    }
+    
+    /**
+     * Changes the user's active simulation.
+     * @return
+     */
+    public static Result changeActiveSimulation() {
+    	Map<String, String[]> data = request().body().asFormUrlEncoded();
+    	Long sid;
+    	try {
+    		sid = Long.parseLong(data.get("simulation")[0]);
+    	} catch(NumberFormatException e) {
+    		flash("level", "danger");
+        	flash("message", "<b>Whoops.</b> An error occured with your request.");
+        	return redirect(routes.Dashboard.simulations());
+    	}
+    	Simulation sim = Simulation.find.byId(sid);
+    	User user = User.findByEmail(request().username());
+    	if(sim.userId == user.id) {
+    		user.activeSimulation = sid;
+    		user.save();
+    		flash("level", "success");
+        	flash("message", "<b>Success!</b> You are now working in simulation '" + sim.name + "'.");
+    		return redirect(routes.Dashboard.simulations());
+    	} else {
+    		return forbidden();
+    	}
+    }
+    
+    /**
      * Returns a static page with embedded price charts.
      * @return
      */

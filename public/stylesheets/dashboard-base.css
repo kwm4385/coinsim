@@ -17,6 +17,10 @@
 	text-align: center;
 }
 
+.close {
+	padding-bottom: 15px;
+}
+
 fieldset {
 	border: 0px;
 }

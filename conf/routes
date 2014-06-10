@@ -8,6 +8,8 @@ GET     /                           controllers.Application.index()
 # Dashboard
 GET     /dashboard                  controllers.Dashboard.index()
 GET     /dashboard/simulations      controllers.Dashboard.simulations()
+POST    /dashboard/newsim           controllers.Dashboard.newSimulation()
+POST    /dashboard/changesim        controllers.Dashboard.changeActiveSimulation()
 GET     /dashboard/charts			controllers.Dashboard.charts()
 GET     /dashboard/price.json       controllers.Dashboard.price()  
 

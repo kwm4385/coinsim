@@ -3,7 +3,13 @@
 @base(user, "My Simulations", "") {
 
 	<script src="/assets/javascripts/simulations.js"></script>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  selectRow('s@user.activeSimulation');
+		  $('#is@user.activeSimulation').attr('checked', true);
+		});
+	</script>
+	
     <table id="simulations" class="table table-striped @if(!simulations.isEmpty()) {table-hover}">
     	<thead>
 	    	<tr>
@@ -16,15 +22,17 @@
 	    </thead>
 	    <tbody>
 	    	@if(simulations.isEmpty()) {<tr><td class="danger centered" colspan="5">No simulations</td></tr>}
+	    	<form id="active-sim" action="/dashboard/changesim" method=POST>
 			@for(s <- simulations) {
 			  <tr id="s@s.id">
-			  	<td><input id="s@s.id" type="radio" name="simulation" value="@s.id" onClick="selectRow('s@s.id')"></td>
+			  	<td><input id="is@s.id" type="radio" name="simulation" value="@s.id" onClick="selectRow('s@s.id')"></td>
 			  	<td>@s.name</td>
 			  	<td class="money">@s.dollars</td>
 			  	<td>@s.coins</td>
 			  	<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
 			  </tr>
-			} 
+			}
+			</form>
 		</tbody>
 	</table>
 
@@ -34,7 +42,7 @@
 		</div>
 		<div id="newSim" class="col-lg-8 well">
 			
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="/dashboard/newsim" method=POST>
 				<fieldset>
 				
 				<!-- Form Name -->

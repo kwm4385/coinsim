@@ -18,3 +18,11 @@ $(document).ready(function () {
         $('#newSim').slideToggle("slow");
       });
 });
+
+$(document).ready(function () {
+	$(':radio').each(function() {	
+		$(this).on('change', function() {
+		   $('#active-sim').submit();
+		});
+	});
+});
