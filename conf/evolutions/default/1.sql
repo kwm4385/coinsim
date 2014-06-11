@@ -9,6 +9,7 @@ create table simulation (
   name                      varchar(255),
   trading_fee               double,
   dollars                   double,
+  starting                  double,
   coins                     double,
   trades                    varchar(255))
 ;
@@ -24,10 +25,8 @@ create table token (
 
 create table trade (
   id                        integer primary key AUTOINCREMENT,
-  type                      integer,
   amount                    double,
-  date                      timestamp,
-  constraint ck_trade_type check (type in (0,1)))
+  date                      timestamp)
 ;
 
 create table user (

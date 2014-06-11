@@ -3,11 +3,20 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("active");
 });
 
-$.getJSON("/dashboard/price.json", function(data) {
-	$("#nav-ticker").text("$" + data.price + " USD/BTC");
-	$("#nav-ticker").attr("title", "Last updated: " + data.last_updated);
-	$("#nav-loader").hide();
-	$("#nav-ticker").css('visibility', 'visible');
+$(document).ready(function() {
+	$.getJSON("/dashboard/price.json", function(data) {
+		$("#nav-ticker").text("$" + data.price + " USD/BTC");
+		$("#nav-ticker").attr("title", "Last updated: " + data.last_updated);
+		$("#nav-loader").hide();
+		$("#nav-ticker").css('visibility', 'visible');
+		
+		var bank = accounting.unformat($("#bank").text());
+		var coins = $("#coins").text();
+		var net = bank + (coins * data.price);
+		$(".networth").each(function() {
+			$(this).text(accounting.formatMoney(net));
+		});
+	});
 });
 
 function toggleArrow() {

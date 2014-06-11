@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import com.avaje.ebean.Expr;
 
 import models.Simulation;
+import models.Trade;
 import models.User;
 import play.Logger;
 import play.libs.F.Promise;
@@ -28,7 +30,13 @@ public class Dashboard extends Controller {
     public static Result index() {
     	User user = User.findByEmail(request().username());
     	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
-    	return resultOrNoSims(ok(index.render(user, sims)));
+    	List<Trade> trades;
+    	if(user.activeSimulation != null) {
+    		trades = Simulation.find.byId(user.activeSimulation).getTrades();
+    	} else {
+    		trades = new ArrayList<Trade>();
+    	}
+    	return resultOrNoSims(ok(index.render(user, sims, trades)));
     }
     
     /**
@@ -66,6 +74,7 @@ public class Dashboard extends Controller {
     	Simulation newSim = new Simulation();
     	newSim.name = name;
     	newSim.dollars = bank;
+    	newSim.starting = bank;
     	newSim.tradingFee = fee;
     	newSim.userId = user.id;
     	newSim.save();

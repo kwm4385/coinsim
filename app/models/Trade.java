@@ -18,6 +18,11 @@ public class Trade extends Model {
 	@Constraints.Required
 	public Type type;
 	
+	@Transient
+	public Type getType() {
+		return type;
+	}
+	
 	@Constraints.Required
 	@Constraints.Min(0)
 	public Double amount;

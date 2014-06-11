@@ -31,6 +31,10 @@ public class Simulation extends Model {
 	
 	@Constraints.Required
 	@Constraints.Min(0)
+	public Double starting;
+	
+	@Constraints.Required
+	@Constraints.Min(0)
 	public Double coins = 0.0;
 	
 	@Constraints.Required
@@ -41,6 +45,9 @@ public class Simulation extends Model {
 
 	@Transient
 	public List<Trade> getTrades() {
+		if(trades == null || trades.equals("")) {
+			return new ArrayList<Trade>();
+		}
 		tradesList = Arrays.asList(trades.replace("{", "").replace("}", "").split(","));
 		List<Trade> result = new ArrayList<Trade>();
 		for(String id : tradesList) {
