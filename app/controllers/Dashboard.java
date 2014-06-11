@@ -21,6 +21,14 @@ import views.html.dashboard.*;
 
 @Security.Authenticated(Secured.class)
 public class Dashboard extends Controller {
+	
+	/*
+     * ========================================================================================
+     *                                        Views
+     * ========================================================================================
+     */
+	
+	//-------------------------------------- Overview --------------------------------------
 
 	/**
 	 * Returns the dashboard index.
@@ -37,6 +45,8 @@ public class Dashboard extends Controller {
     	}
     	return resultOrNoSims(ok(index.render(user, sims, trades)));
     }
+    
+    //------------------------------------ Simulations ------------------------------------
     
     /**
      * Returns the simulations management page.
@@ -150,6 +160,14 @@ public class Dashboard extends Controller {
     	}
     }
     
+  //-------------------------------------- Buy -------------------------------------
+    
+    
+  //-------------------------------------- Sell ------------------------------------
+    
+    
+  //------------------------------------ Charts ------------------------------------
+    
     /**
      * Returns a static page with embedded price charts.
      * @return
@@ -159,6 +177,12 @@ public class Dashboard extends Controller {
     	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
     	return ok(charts.render(user, sims));
     }
+    
+    /*
+     * ========================================================================================
+     *                                        Utilities
+     * ========================================================================================
+     */
     
     /**
      * Returns the given result or a redirect to the simulations page if the user has none.
@@ -176,6 +200,12 @@ public class Dashboard extends Controller {
     	} 
     }
     
+    /*
+     * ========================================================================================
+     *                                        JSON
+     * ========================================================================================
+     */
+    
     /**
      * Returns a JSON response with the current bitcoin price.
      * @return
@@ -192,6 +222,4 @@ public class Dashboard extends Controller {
 			}
     	});
     }
-   
-    
 }
