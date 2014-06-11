@@ -162,6 +162,18 @@ public class Dashboard extends Controller {
     
   //-------------------------------------- Buy -------------------------------------
     
+    public static Result buyView() {
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	List<Trade> trades;
+    	if(user.activeSimulation != null) {
+    		trades = Simulation.find.byId(user.activeSimulation).getTrades();
+    	} else {
+    		trades = new ArrayList<Trade>();
+    	}
+    	return resultOrNoSims(ok(buy.render(user, sims, trades)));
+    }
+    
     
   //-------------------------------------- Sell ------------------------------------
     

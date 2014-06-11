@@ -11,6 +11,7 @@ GET     /dashboard/simulations      controllers.Dashboard.simulations()
 POST    /dashboard/newsim           controllers.Dashboard.newSimulation()
 POST    /dashboard/changesim        controllers.Dashboard.changeActiveSimulation()
 POST    /dashboard/deletesim        controllers.Dashboard.deleteSimulation()
+GET     /dashboard/buy              controllers.Dashboard.buyView()
 GET     /dashboard/charts			controllers.Dashboard.charts()
 GET     /dashboard/price.json       controllers.Dashboard.price()  
 
