@@ -24,8 +24,8 @@ error.confirm=Confirmation failed
 error.expiredresetlink=This password reset has expired.
 error.expiredmaillink=This mail change has expired.
 
-account.settings.password=Click OK to receive instructions by mail.
-account.settings.email=Enter your new email address. Click OK to receive instructions on this new mail.
+account.settings.password=Click Reset to receive instructions by email.
+account.settings.email=Enter your new email address. Click OK to receive instructions on this new address.
 
 signin.signin=Sign In
 signin.your.email=Your email address

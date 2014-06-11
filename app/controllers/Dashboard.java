@@ -10,7 +10,6 @@ import com.avaje.ebean.Expr;
 import models.Simulation;
 import models.Trade;
 import models.User;
-import play.Logger;
 import play.libs.F.Promise;
 import play.libs.F.Function;
 import play.libs.Json;
@@ -141,8 +140,6 @@ public class Dashboard extends Controller {
     	if(sim.userId == user.id) {
     		user.activeSimulation = sid;
     		user.save();
-    		//flash("level", "success");
-        	//flash("message", "<b>Success!</b> You are now working in simulation '" + sim.name + "'.");
         	
         	if(data.get("from") != null) {
         		return redirect(data.get("from")[0]);

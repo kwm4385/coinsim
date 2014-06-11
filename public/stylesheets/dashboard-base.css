@@ -27,7 +27,7 @@
 	background-color: #f5f5f5;
 	border-top: 1px solid #dddddd;
 	position: relative;
-	margin-top: -40px; /* negative value of footer height */
+	margin-top: -42px;
 	height: 40px;
 	clear:both;
 }
