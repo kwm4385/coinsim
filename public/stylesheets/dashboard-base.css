@@ -26,11 +26,18 @@
 	padding-top: 10px;
 	background-color: #f5f5f5;
 	border-top: 1px solid #dddddd;
-	
 	position: relative;
 	margin-top: -40px; /* negative value of footer height */
 	height: 40px;
 	clear:both;
+}
+
+.money-container-green {
+	background-color: #dff0d8;
+}
+
+.money-container-red {
+	background-color: #f2dede;
 }
 
 fieldset {
