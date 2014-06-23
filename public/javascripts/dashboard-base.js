@@ -3,8 +3,10 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("active");
 });
 
-$(document).ready(function() {
+function updatePrice() {
 	$.getJSON("/dashboard/price.json", function(data) {
+		$("#nav-loader").show();
+		$("#nav-ticker").css('visibility', 'hidden');
 		$("#nav-ticker").text("$" + data.price + " USD/BTC");
 		$("#nav-ticker").attr("title", "Last updated: " + data.last_updated);
 		$("#nav-loader").hide();
@@ -17,6 +19,11 @@ $(document).ready(function() {
 			$(this).text(accounting.formatMoney(net));
 		});
 	});
+}
+
+$(document).ready(function() {
+	updatePrice();
+	setInterval("updatePrice()", 30000);
 });
 
 function toggleArrow() {
