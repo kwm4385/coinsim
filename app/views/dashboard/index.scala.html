@@ -74,7 +74,7 @@
 				    	@for(t <- trades) {
 				    		<tr class="@if(t.getType() == Trade.Type.BUY) {info} else {danger}")>
 				    			<td>@t.getType()</td>
-				    			<td>@t.amount</td>
+				    			<td>@t.amount BTC</td>
 				    			<td>@t.date</td>
 				    		</tr>
 				    	}
