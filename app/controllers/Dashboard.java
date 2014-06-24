@@ -1,5 +1,6 @@
 package controllers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -194,7 +195,7 @@ public class Dashboard extends Controller {
 				total = Math.round(total*100.0)/100.0;
 				if(sim.dollars >= total) {
 					sim.dollars -= total;
-					sim.coins += amount;
+					sim.addCoins(amount);
 					Trade t = new Trade();
 					t.amount = amount;
 					t.setType(Trade.Type.BUY);

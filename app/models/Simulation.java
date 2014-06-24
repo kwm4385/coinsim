@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Simulation extends Model {
 	
 	@Constraints.Required
 	@Constraints.Min(0)
-	public Double dollars;
+	public double dollars;
 	
 	@Constraints.Required
 	@Constraints.Min(0)
@@ -37,7 +38,22 @@ public class Simulation extends Model {
 	
 	@Constraints.Required
 	@Constraints.Min(0)
-	public Double coins = 0.0;
+	public double coins = 0.0;
+	
+	@Transient
+	private BigDecimal coinsBig = new BigDecimal("0.0").setScale(8, BigDecimal.ROUND_HALF_UP);
+	
+	public void addCoins(double amount) {
+		coinsBig = new BigDecimal(Double.toString(coins)).setScale(8, BigDecimal.ROUND_HALF_UP);
+		coinsBig = coinsBig.add(new BigDecimal(Double.toString(amount)).setScale(8, BigDecimal.ROUND_HALF_UP));
+		coins = coinsBig.doubleValue();
+	}
+	
+	public void subCoins(double amount) {
+		coinsBig = new BigDecimal(Double.toString(coins)).setScale(8, BigDecimal.ROUND_HALF_UP);
+		coinsBig = coinsBig.subtract(new BigDecimal(Double.toString(amount)).setScale(8, BigDecimal.ROUND_HALF_UP));
+		coins = coinsBig.doubleValue();
+	}
 	
 	@Constraints.Required
 	public String trades;
