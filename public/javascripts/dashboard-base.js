@@ -1,6 +1,10 @@
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
+$(document).ready(function() {
+	$("#menu-toggle").click(function(e) {
+	    e.preventDefault();
+	    $("#wrapper").toggleClass("active");
+	    $("#sidebar-expand").toggleClass("glyphicon-chevron-right glyphicon-chevron-left");
+	    console.log("click");
+	});
 });
 
 function updatePrice() {
@@ -23,12 +27,8 @@ function updatePrice() {
 
 $(document).ready(function() {
 	updatePrice();
-	setInterval("updatePrice()", 30000);
+	setInterval("updatePrice()", 60000);
 });
-
-function toggleArrow() {
-	$("#sidebar-expand").toggleClass("glyphicon-chevron-right glyphicon-chevron-left");
-}
 
 $(document).ready(function() {
   $(".money").each(function() {
