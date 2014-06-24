@@ -1,4 +1,4 @@
-@(user: User, simulations: List[Simulation], trades: List[Trade])
+@(user: User, simulations: List[Simulation])
 
 @base(user, simulations, "Buy Bitcoin", "Buy") {
 	@defining(if(user.activeSimulation != null) {Simulation.find.byId(user.activeSimulation)} else {new Simulation()}) { currentSim =>

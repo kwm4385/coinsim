@@ -170,13 +170,7 @@ public class Dashboard extends Controller {
     public static Result buyView() {
     	User user = User.findByEmail(request().username());
     	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
-    	List<Trade> trades;
-    	if(user.activeSimulation != null) {
-    		trades = Simulation.find.byId(user.activeSimulation).getTrades();
-    	} else {
-    		trades = new ArrayList<Trade>();
-    	}
-    	return resultOrNoSims(ok(buy.render(user, sims, trades)));
+    	return resultOrNoSims(ok(buy.render(user, sims)));
     }
     
     /**
@@ -188,7 +182,6 @@ public class Dashboard extends Controller {
     	final User user = User.findByEmail(request().username());
     	final List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
     	final Simulation sim = Simulation.find.byId(user.activeSimulation);
-    	final List<Trade> trades = sim.getTrades();
     	final double amount = Double.parseDouble(data.get("amount")[0]);
     	
     	return PriceData.getPrice().map(new Function<Double, Result>() {
@@ -213,7 +206,7 @@ public class Dashboard extends Controller {
 				} else {
 					flash("level", "danger");
 		        	flash("message", "<b>Error:</b> You have insufficient funds to complete this transaction.");
-		        	return ok(buy.render(user, sims, trades));
+		        	return ok(buy.render(user, sims));
 				}
 			}
     	});
