@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import models.Trade.Type;
+import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.*;
 
@@ -41,25 +43,29 @@ public class Simulation extends Model {
 	public String trades;
 	
 	@Transient
-	private List<String> tradesList;
+	private List<Long> tradesList = new ArrayList<Long>();
 
 	@Transient
 	public List<Trade> getTrades() {
 		if(trades == null || trades.equals("")) {
 			return new ArrayList<Trade>();
 		}
-		tradesList = Arrays.asList(trades.replace("{", "").replace("}", "").split(","));
+		for(String s : Arrays.asList(trades.replace("[", "").replace("]", "").split(","))) {
+			s = s.trim();
+			tradesList.add(Long.parseLong(s));
+		}
 		List<Trade> result = new ArrayList<Trade>();
-		for(String id : tradesList) {
-			result.add(Trade.find.byId(Long.parseLong(id)));
+		for(Long id : tradesList) {
+			result.add(Trade.find.byId(id));
 		}
 		return result;
 	}
 	
 	@Transient
 	public void addTrade(Trade trade) {
-		tradesList.add(trade.id.toString());
+		tradesList.add(trade.id);
 		trades = tradesList.toString();
+		tradesList.clear();
 		this.save();
 	}
 	

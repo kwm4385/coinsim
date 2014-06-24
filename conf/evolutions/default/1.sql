@@ -25,6 +25,7 @@ create table token (
 
 create table trade (
   id                        integer primary key AUTOINCREMENT,
+  type                      varchar(255),
   amount                    double,
   date                      timestamp)
 ;

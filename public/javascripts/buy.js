@@ -20,14 +20,14 @@ $(document).ready(function() {
 		var sub = a * currentPrice;
 		var feeAmount = sub * (fee / 100);
 		$("#feeAmount").val(feeAmount.toFixed(2));
-		$("#total").val(feeAmount + sub);
+		$("#total").val((feeAmount + sub).toFixed(2));
 	});
 });
 
 $(document).ready(function() {
 	var form = $("#buy-form");
 	form.submit(function(event) {
-		if (form.data("prevented") == true ) {
+		if(form.data("prevented") == true) {
 	        form.data("prevented", false);
 	        return true;
 	    }

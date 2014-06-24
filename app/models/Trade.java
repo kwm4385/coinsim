@@ -16,11 +16,15 @@ public class Trade extends Model {
 	public Long id;
 	
 	@Constraints.Required
-	public Type type;
+	private String type;
+	
+	public void setType(Type t) {
+		type = t.name();
+	}
 	
 	@Transient
 	public Type getType() {
-		return type;
+		return Type.valueOf(type);
 	}
 	
 	@Constraints.Required
@@ -33,7 +37,7 @@ public class Trade extends Model {
 	
 	public static Finder<Long, Trade> find = new Finder<Long, Trade>(Long.class, Trade.class); 
 	
-	public enum Type {
+	public static enum Type {
 		BUY, SELL;
 	}
 }

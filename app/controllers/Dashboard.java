@@ -10,6 +10,7 @@ import com.avaje.ebean.Expr;
 import models.Simulation;
 import models.Trade;
 import models.User;
+import play.Logger;
 import play.libs.F.Promise;
 import play.libs.F.Function;
 import play.libs.Json;
@@ -162,6 +163,10 @@ public class Dashboard extends Controller {
     
   //-------------------------------------- Buy -------------------------------------
     
+    /**
+     * Returns the buy form
+     * @return
+     */
     public static Result buyView() {
     	User user = User.findByEmail(request().username());
     	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
@@ -172,6 +177,46 @@ public class Dashboard extends Controller {
     		trades = new ArrayList<Trade>();
     	}
     	return resultOrNoSims(ok(buy.render(user, sims, trades)));
+    }
+    
+    /**
+     * Processes a buy request from the form.
+     * @return
+     */
+    public static Promise<Result> postBuy() {
+    	Map<String, String[]> data = request().body().asFormUrlEncoded();
+    	final User user = User.findByEmail(request().username());
+    	final List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	final Simulation sim = Simulation.find.byId(user.activeSimulation);
+    	final List<Trade> trades = sim.getTrades();
+    	final double amount = Double.parseDouble(data.get("amount")[0]);
+    	
+    	return PriceData.getPrice().map(new Function<Double, Result>() {
+			@Override
+			public Result apply(Double price) throws Throwable {
+				double sub = amount * price;
+				double feeAmount = sub * (sim.tradingFee / 100);
+				double total = sub + feeAmount;
+				total = Math.round(total*100.0)/100.0;
+				if(sim.dollars >= total) {
+					sim.dollars -= total;
+					sim.coins += amount;
+					Trade t = new Trade();
+					t.amount = amount;
+					t.setType(Trade.Type.BUY);
+					t.save();
+					sim.addTrade(t);
+					sim.save();
+					flash("level", "success");
+		        	flash("message", "<b>Success!</b> Your trade has been executed.");
+		        	return redirect(routes.Dashboard.index());
+				} else {
+					flash("level", "danger");
+		        	flash("message", "<b>Error:</b> You have insufficient funds to complete this transaction.");
+		        	return ok(buy.render(user, sims, trades));
+				}
+			}
+    	});
     }
     
     

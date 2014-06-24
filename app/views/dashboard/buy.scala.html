@@ -1,6 +1,6 @@
 @(user: User, simulations: List[Simulation], trades: List[Trade])
 
-@base(user, simulations, "Buy Order", "Buy") {
+@base(user, simulations, "Buy Bitcoin", "Buy") {
 	@defining(if(user.activeSimulation != null) {Simulation.find.byId(user.activeSimulation)} else {new Simulation()}) { currentSim =>
 		<script type="text/javascript">
 			var fee = @currentSim.tradingFee;
@@ -9,7 +9,7 @@
 
 	    <div class="row">
 	    	<div class="col-lg-6 col-lg-offset-3">	    	
-			    <form id="buy-form" class="form-horizontal" action="/dashboard/buy/" method=POST>			
+			    <form id="buy-form" class="form-horizontal" action="/dashboard/buy" method=POST>			
 				    <div class="panel panel-default">
 					  <div class="panel-heading">
 					    <!-- Form Name -->
@@ -23,7 +23,7 @@
 							  <div class="col-md-6">
 							    <div class="input-group">
 							      <span class="input-group-addon"><i class="fa fa-btc"></i></span>
-							      <input id="amount" name="amount" class="form-control" placeholder="" type="number" min="0.00000001" max="10000" step="0.00000001" required>
+							      <input id="amount" name="amount" class="form-control" placeholder="" type="number" min="0.001" max="10000" step="0.001" required>
 							    </div>
 							    <p class="help-block">
 							    	<span id="display-price" style="font-weight:bold;"><i class="fa fa-refresh fa-spin"></i></span>

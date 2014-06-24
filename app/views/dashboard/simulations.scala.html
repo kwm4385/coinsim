@@ -66,7 +66,7 @@
 					  <div class="col-md-5">
 					    <div class="input-group">
 					      <span class="input-group-addon">$</span>
-					      <input id="bank" name="bank" class="form-control" placeholder="" type="number" required="" min="0" max="100000000000" step="1">
+					      <input id="bank" name="bank" class="form-control" placeholder="" type="number" required="" min="0" max="100000000000" step="0.01">
 					    </div>
 					    <p class="help-block">These are the funds you will start with.</p>
 					  </div>
@@ -85,42 +85,7 @@
 					</div>
 					<input id="cancelNew" type="reset" value="Cancel" class="btn btn-default">
 					<button type="submit" class="btn btn-success">Submit</button>
-				</fieldset><!-- Form Name -->
-					<legend>New Simulation</legend>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-4 control-label" for="name">Name</label>  
-					  <div class="col-md-5">
-					  	<input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-					  </div>
-					</div>
-					
-					<!-- Prepended text-->
-					<div class="form-group">
-					  <label class="col-md-4 control-label" for="bank">Start Bank</label>
-					  <div class="col-md-5">
-					    <div class="input-group">
-					      <span class="input-group-addon">$</span>
-					      <input id="bank" name="bank" class="form-control" placeholder="" type="number" required="" min="0" max="100000000000" step="1">
-					    </div>
-					    <p class="help-block">These are the funds you will start with.</p>
-					  </div>
-					</div>
-					
-					<!-- Appended text-->
-					<div class="form-group">
-					  <label class="col-md-4 control-label" for="fee">Trading Fee</label>
-					  <div class="col-md-5">
-					    <div class="input-group">
-					      <input id="fee" name="fee" class="form-control" placeholder="" type="number" required="" min="0" max="100" step="0.01">
-					      <span class="input-group-addon">%</span>
-					    </div>
-					    <p class="help-block">Percent commission charged per transaction.</p>
-					  </div>
-					</div>
-					<input id="cancelNew" type="reset" value="Cancel" class="btn btn-default">
-					<button type="submit" class="btn btn-success">Submit</button>
+				</fieldset>
 			</form>
 
 		</div>
