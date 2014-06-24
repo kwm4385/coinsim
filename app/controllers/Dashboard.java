@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,6 @@ import com.avaje.ebean.Expr;
 import models.Simulation;
 import models.Trade;
 import models.User;
-import play.Logger;
 import play.libs.F.Promise;
 import play.libs.F.Function;
 import play.libs.Json;
@@ -41,6 +41,7 @@ public class Dashboard extends Controller {
     	List<Trade> trades;
     	if(user.activeSimulation != null) {
     		trades = Simulation.find.byId(user.activeSimulation).getTrades();
+    		Collections.reverse(trades);
     	} else {
     		trades = new ArrayList<Trade>();
     	}

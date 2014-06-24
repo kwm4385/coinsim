@@ -50,6 +50,7 @@ public class Simulation extends Model {
 		if(trades == null || trades.equals("")) {
 			return new ArrayList<Trade>();
 		}
+		tradesList.clear();
 		for(String s : Arrays.asList(trades.replace("[", "").replace("]", "").split(","))) {
 			s = s.trim();
 			tradesList.add(Long.parseLong(s));
@@ -58,15 +59,23 @@ public class Simulation extends Model {
 		for(Long id : tradesList) {
 			result.add(Trade.find.byId(id));
 		}
+		tradesList.clear();
 		return result;
 	}
 	
 	@Transient
 	public void addTrade(Trade trade) {
+		tradesList.clear();
+		if(!(trades == null || trades.equals(""))) {
+			for(String s : Arrays.asList(trades.replace("[", "").replace("]", "").split(","))) {
+				s = s.trim();
+				tradesList.add(Long.parseLong(s));
+			}
+		}
 		tradesList.add(trade.id);
 		trades = tradesList.toString();
-		tradesList.clear();
 		this.save();
+		tradesList.clear();
 	}
 	
 	public static Model.Finder<Long, Simulation> find = new Model.Finder<Long, Simulation>(Long.class, Simulation.class); 
