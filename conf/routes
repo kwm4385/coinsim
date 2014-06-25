@@ -7,13 +7,20 @@ GET     /                           controllers.Application.index()
 
 # Dashboard
 GET     /dashboard                  controllers.Dashboard.index()
+
 GET     /dashboard/simulations      controllers.Dashboard.simulations()
 POST    /dashboard/newsim           controllers.Dashboard.newSimulation()
 POST    /dashboard/changesim        controllers.Dashboard.changeActiveSimulation()
 POST    /dashboard/deletesim        controllers.Dashboard.deleteSimulation()
+
 GET     /dashboard/buy              controllers.Dashboard.buyView()
 POST    /dashboard/buy				controllers.Dashboard.postBuy()
+
+GET     /dashboard/sell             controllers.Dashboard.sellView()
+POST    /dashboard/sell      		controllers.Dashboard.postSell()
+
 GET     /dashboard/charts			controllers.Dashboard.charts()
+
 GET     /dashboard/price.json       controllers.Dashboard.price()  
 
 # Authentication and accounts

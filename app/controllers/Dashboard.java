@@ -217,6 +217,54 @@ public class Dashboard extends Controller {
     
   //-------------------------------------- Sell ------------------------------------
     
+    /**
+     * Returns the sell form
+     * @return
+     */
+    public static Result sellView() {
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	return resultOrNoSims(ok(sell.render(user, sims)));
+    }
+    
+    /**
+     * Processes a buy request from the form.
+     * @return
+     */
+    public static Promise<Result> postSell() {
+    	Map<String, String[]> data = request().body().asFormUrlEncoded();
+    	final User user = User.findByEmail(request().username());
+    	final List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	final Simulation sim = Simulation.find.byId(user.activeSimulation);
+    	final double amount = Double.parseDouble(data.get("amount")[0]);
+    	
+    	return PriceData.getPrice().map(new Function<Double, Result>() {
+			@Override
+			public Result apply(Double price) throws Throwable {
+				double sub = amount * price;
+				double feeAmount = sub * (sim.tradingFee / 100);
+				double total = sub - feeAmount;
+				total = Math.round(total*100.0)/100.0;
+				if(amount <= sim.coins) {
+					sim.dollars += total;
+					sim.subCoins(amount);
+					Trade t = new Trade();
+					t.amount = amount;
+					t.setType(Trade.Type.SELL);
+					t.save();
+					sim.addTrade(t);
+					sim.save();
+					flash("level", "success");
+		        	flash("message", "<b>Success!</b> Your trade has been executed.");
+		        	return redirect(routes.Dashboard.index());
+				} else {
+					flash("level", "danger");
+		        	flash("message", "<b>Error:</b> You have insufficient funds to complete this transaction.");
+		        	return ok(sell.render(user, sims));
+				}
+			}
+    	});
+    }
     
   //------------------------------------ Charts ------------------------------------
     
