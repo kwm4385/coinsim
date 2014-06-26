@@ -2,6 +2,10 @@
 
 @base(user, simulations, "Trading Dashboard", "Overview") {
 	@defining(if(user.activeSimulation != null) {Simulation.find.byId(user.activeSimulation)} else {new Simulation()}) { currentSim =>
+	
+		<script type="text/javascript">
+			var startingFunds = @currentSim.starting;
+		</script>
 	    
 	    <div class="row">
 	    	<div class="col-md-12">
@@ -51,7 +55,7 @@
 				  <div class="panel-heading">
 				    <h3 class="panel-title"><i class="fa fa-money"></i> Net Worth</h3>
 				  </div>
-				  <div class="panel-body centered money-container-green">
+				  <div id="networth-container" class="panel-body centered">
 				    <h1 class="networth"></h1>
 				  </div>
 				</div>

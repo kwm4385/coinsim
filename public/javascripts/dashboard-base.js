@@ -22,6 +22,13 @@ function updatePrice() {
 		$(".networth").each(function() {
 			$(this).text(accounting.formatMoney(net));
 		});
+		if(net >= startingFunds) {
+			$("#networth-container").addClass("money-container-green");
+			$("#networth-container").removeClass("money-container-red");
+		} else {
+			$("#networth-container").removeClass("money-container-green");
+			$("#networth-container").addClass("money-container-red");
+		}
 	});
 }
 
