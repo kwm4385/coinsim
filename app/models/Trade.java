@@ -18,6 +18,12 @@ public class Trade extends Model {
 	@Constraints.Required
 	private String type;
 	
+	@Constraints.Required
+	public double price;
+	
+	@Constraints.Required
+	public double total;
+	
 	public void setType(Type t) {
 		type = t.name();
 	}

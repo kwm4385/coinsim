@@ -198,6 +198,8 @@ public class Dashboard extends Controller {
 					Trade t = new Trade();
 					t.amount = amount;
 					t.setType(Trade.Type.BUY);
+					t.price = price;
+					t.total = total;
 					t.save();
 					sim.addTrade(t);
 					sim.save();
@@ -250,6 +252,8 @@ public class Dashboard extends Controller {
 					Trade t = new Trade();
 					t.amount = amount;
 					t.setType(Trade.Type.SELL);
+					t.price = price;
+					t.total = total;
 					t.save();
 					sim.addTrade(t);
 					sim.save();

@@ -66,15 +66,19 @@
 				    	<tr>
 				    		<th>Type</th>
 				    		<th>Amount</th>
+				    		<th>Price</th>
+				    		<th>Total</th>
 				    		<th>Date</th>
 				    	</tr>
 				    </thead>
 				    <tbody>
 				    	@if(trades.isEmpty()) {<tr><td class="centered" colspan="5">No trades available</td></tr>}
 				    	@for(t <- trades) {
-				    		<tr class="@if(t.getType() == Trade.Type.BUY) {info} else {danger}")>
+				    		<tr class="@if(t.getType() == Trade.Type.BUY) {info} else {warning}")>
 				    			<td>@t.getType()</td>
 				    			<td>@t.amount BTC</td>
+				    			<td><span class="money">@t.price</span> USD/BTC</td>
+				    			<td>@if(t.getType() == Trade.Type.BUY) {-} else {+} <span class="money">@t.total</span></td>
 				    			<td>@t.date</td>
 				    		</tr>
 				    	}
