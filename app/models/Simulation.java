@@ -94,6 +94,14 @@ public class Simulation extends Model {
 		tradesList.clear();
 	}
 	
+	@Override
+	public void delete() {
+		super.delete();
+		for(Trade t : getTrades()) {
+			t.delete();
+		}
+	}
+	
 	public static Model.Finder<Long, Simulation> find = new Model.Finder<Long, Simulation>(Long.class, Simulation.class); 
 
 }
