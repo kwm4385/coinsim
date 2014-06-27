@@ -88,6 +88,9 @@ public class Simulation extends Model {
 				tradesList.add(Long.parseLong(s));
 			}
 		}
+		if(tradesList.size() >= 25) {
+			tradesList.remove(0);
+		}
 		tradesList.add(trade.id);
 		trades = tradesList.toString();
 		this.save();
