@@ -281,6 +281,18 @@ public class Dashboard extends Controller {
     	return ok(charts.render(user, sims));
     }
     
+  //------------------------------------ Getting Started ------------------------------------
+    
+    /**
+     * Returns a static page with getting started guide.
+     * @return
+     */
+    public static Result gettingStarted() {
+    	User user = User.findByEmail(request().username());
+    	List<Simulation> sims = Simulation.find.where(Expr.eq("userId", user.id)).findList();
+    	return ok(gettingstarted.render(user, sims));
+    }
+    
     /*
      * ========================================================================================
      *                                        Utilities

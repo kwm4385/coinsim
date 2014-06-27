@@ -23,6 +23,8 @@ GET     /dashboard/charts			controllers.Dashboard.charts()
 
 GET     /dashboard/price.json       controllers.Dashboard.price()  
 
+GET     /dashboard/gettingstarted   controllers.Dashboard.gettingStarted()
+
 # Authentication and accounts
 POST    /login                      controllers.Authentication.authenticate()
 GET     /login                      controllers.Authentication.login()
