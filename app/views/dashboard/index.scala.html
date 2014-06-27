@@ -71,6 +71,7 @@
 				    		<th>Type</th>
 				    		<th>Amount</th>
 				    		<th>Price</th>
+				    		<th>Fee</th>
 				    		<th>Total</th>
 				    		<th>Date</th>
 				    	</tr>
@@ -82,6 +83,11 @@
 				    			<td>@t.getType()</td>
 				    			<td>@t.amount BTC</td>
 				    			<td><span class="money">@t.price</span> USD/BTC</td>
+				    			<td class="money">
+				    			@defining(t.amount * t.price * (currentSim.tradingFee / 100)) { fee =>
+				    				@fee
+				    			}
+				    			</td>
 				    			<td>@if(t.getType() == Trade.Type.BUY) {-} else {+} <span class="money">@t.total</span></td>
 				    			<td>@t.date</td>
 				    		</tr>
