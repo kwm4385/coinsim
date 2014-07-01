@@ -332,7 +332,6 @@ public class Dashboard extends Controller {
 				Map<String, String> response = new HashMap<String, String>();
 				response.put("price", Double.toString(price));
 				response.put("last_updated", PriceData.lastUpdated().toString());
-				response.put("exchange", PriceData.getExchange());
 				return ok(Json.toJson(response));
 			}
     	});

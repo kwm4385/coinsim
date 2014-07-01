@@ -13,23 +13,22 @@ import play.libs.F.Promise;
 
 
 /**
- * Class holding up to date bitcoin price data. \
+ * Class holding up to date bitcoin price data. 
  * Always a minute old at the latest.
  * @author kevin
  */
 public class PriceData {
 	
 	// URL of the prices api
-	public static final String API_URL = "https://api.bitcoinaverage.com/exchanges/USD";
+	public static final String API_URL = "https://api.bitcoinaverage.com/all";
 	
 	// How long prices are cached in seconds
-	public static final int CACHE_LIFE = 30;
+	public static final int CACHE_LIFE = 60;
 	
 	private static final PriceUpdater PRICE_UPDATER = new PriceUpdater();
 	
 	private static double price = -1;
 	private static Date lastUpdated = new Date(0L);
-	private static String exchange = "bitstamp";
 	
 	/**
 	 * Gets the last fetched price.
@@ -48,14 +47,6 @@ public class PriceData {
 	}
 	
 	/**
-	 * Gets the name of the exchange being used for price quotes.
-	 * @return
-	 */
-	public static String getExchange() {
-		return exchange;
-	}
-	
-	/**
 	 * Updates the price and last updated time. **Blocking**
 	 * TODO: Prevent concurrent requests.
 	 */
@@ -69,7 +60,7 @@ public class PriceData {
 					URLConnection api = new URL(API_URL).openConnection();
 					ObjectMapper mapper = new ObjectMapper();
 					Map<String, Object> jsonMap = mapper.readValue(api.getInputStream(), Map.class);
-					price = Double.parseDouble(((Map)((Map)jsonMap.get(exchange)).get("rates")).get("ask").toString());
+					price = Double.parseDouble(((Map)((Map)((Map)jsonMap.get("USD")).get("averages"))).get("last").toString());
 					Logger.debug(Double.toString(price));
 				} catch (Exception e) {
 					Logger.error("Error fetching price data");
