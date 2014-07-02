@@ -308,7 +308,7 @@ public class Dashboard extends Controller {
     	User user = User.findByEmail(request().username());
     	if(user.activeSimulation == null) {
     		flash("level", "warning");
-    		flash("message", "<b>Hey!</b> You need to set up your first simulation.");
+    		flash("message", "<b>Hey!</b> Before you begin, you need to set up your first simulation. To learn more, visit the <a href='/dashboard/gettingstarted'>getting started guide</a>.");
     		return redirect(routes.Dashboard.simulations());
     	} else {
     		return r;
