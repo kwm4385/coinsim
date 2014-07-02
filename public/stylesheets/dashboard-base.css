@@ -210,3 +210,7 @@ html, body {
 	/* Standard */
 	left: calc(100% - 15px);
 }
+
+.donate-modal {
+	width: 450px;
+}
