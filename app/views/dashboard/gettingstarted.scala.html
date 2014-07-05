@@ -2,5 +2,67 @@
 
 @base(user, simulations, "Getting Started", "Getting Started") {
 
+	<link href="/assets/stylesheets/gettingstarted.css" rel="stylesheet">
 	
+	<p>
+	Welcome to CoinSim! These instructions will help you get started with this Bitcoin trading simulator.
+	</p>
+
+	<h3>Creating Simulations</h3>
+	
+	<p>
+		When you start using CoinSim, the first thing you need to do is create a new simulation. A simulation is a self-contained trading environment in which you hold
+		balances of cash as well as Bitcoin. Trades performed in one simulation do not affect others and you can have up to 10 simulations at a time. 
+		To create your first simulation, select the <strong>Active Simulation</strong> menu and then <strong>Manage</strong>. 
+		On the simulation management page, you can create new simulations and delete existing ones. To begin creating a new simulation, 
+		click the <strong>New Simulation</strong> button.
+	</p>
+	
+	<p>
+		Each simulation has several parameters you can set. These include:
+	</p>
+	<ul>
+		<li><strong>Name</strong> - A descriptive name to help you identify the simulation.</li>
+		<li><strong>Start bank</strong> - The amount of (fiat) money you will start with, in dollars.</li>
+		<li><strong>Trading Fee</strong> - The percent commission deducted for each trade that you make. This can be set between 0-100%. 
+		(A realistic fee would be about 0.2-0.5%.)</li>
+	</ul>
+	<p>
+		These settings cannot be changed once a simulation has been started, so choose carefully!
+	</p>
+	<p>
+		To delete a simulation, click the trash can icon at the end of its row in the table. A dialog will appear and allow you to confirm your choice. 
+		Deleting a simulation will remove it from your simulation list and cannot be undone!
+	</p>
+	
+	<h3>Trading Dashboard</h3>
+	
+	<p>
+		Your trading dashboard provides an overview of your balances and trading history for the active simulation. If you have multiple simulations, 
+		you can switch between them at any given time from the <strong>Active Simulation</strong> menu. In the top banner you will find information on the active simulation
+		such as the funds you started with and the transaction fee. Directly below, your current cash and Bitcoin balance is displayed. Your net worth is the sum of
+		the your cash on hand and the value of your Bitcoins at the current market price.
+	</p>
+	
+	<h3>Buying and Selling</h3>
+	
+	<p>
+		At the heart of any good trading strategy is of course buying and selling! CoinSim currently supports one-time, immediate trades using the 
+		<a href="https://BitcoinAverage.com">BitcoinAverage Price Index</a>, a weighted average of the world's largest Bitcoin exchanges. The price is updated
+		and cached by the CoinSim servers every 60 seconds, and trades are always executed with the most current price.
+	</p>
+	
+	<p>
+		To buy or sell Bitcoin, select the appropriate link in the sidebar and enter the amount you wish to trade. The calculated fee and total will be displayed and you 
+		can then confirm the trade. If you have sufficient funds in your active simulation's account, the trade will be executed immediately and added to the trade history
+		on your dashboard.
+	</p>
+	
+	<h3>Charts</h3>
+	
+	<p>
+		To help you plan your trading strategies, CoinSim allows you to view several third-party exchange price charts all in one place. Simply select the <strong>Charts</strong>
+		link and the charting service you would like to view. To view the chart in a new window, click the <strong><i class="fa fa-external-link"></i></strong> link in the upper 
+		right corner.
+	</p>
 }
