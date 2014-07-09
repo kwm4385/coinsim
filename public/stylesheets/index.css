@@ -36,6 +36,7 @@ html {
 .intro-section {
     min-height: 100%;
     padding-top: 150px;
+    padding-bottom: 25px;
     text-align: center;
 }
 
