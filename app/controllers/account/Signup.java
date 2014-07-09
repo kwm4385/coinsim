@@ -1,6 +1,5 @@
 package controllers.account;
 
-import controllers.Application;
 import controllers.Authentication;
 import models.User;
 import models.utils.AppException;
@@ -27,9 +26,6 @@ import static play.data.Form.form;
 
 /**
  * Signup to CoinSim : save and send confirm mail.
- * <p/>
- * User: yesnault
- * Date: 31/01/12
  */
 public class Signup extends Controller {
 
@@ -54,7 +50,7 @@ public class Signup extends Controller {
     /**
      * Save the new user.
      *
-     * @return Successfull page or created form if bad
+     * @return Successful page or created form if bad
      */
     public static Result save() {
         Form<Authentication.Register> registerForm = form(Authentication.Register.class).bindFromRequest();

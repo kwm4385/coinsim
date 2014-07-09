@@ -5,6 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+# Contact
+POST    /contact                    controllers.Application.submitContact()
+
 # Dashboard
 GET     /dashboard                  controllers.Dashboard.index()
 
