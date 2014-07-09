@@ -34,7 +34,7 @@ html {
 }
 
 .intro-section {
-    height: 100%;
+    min-height: 100%;
     padding-top: 150px;
     text-align: center;
 }
@@ -48,13 +48,13 @@ html {
 }
 
 .faq-section {
-    height: 100%;
+    min-height: 100%;
     padding-top: 50px;
     text-align: center;
 }
 
 .contact-section {
-    height: 100%;
+    mon-height: 100%;
     padding-top: 50px;
     text-align: center;
     background: rgba(238, 238, 238, 0.6);
