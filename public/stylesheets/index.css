@@ -55,7 +55,7 @@ html {
 }
 
 .contact-section {
-    mon-height: 100%;
+    min-height: 100%;
     padding-top: 50px;
     text-align: center;
     background: rgba(238, 238, 238, 0.6);
