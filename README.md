@@ -17,3 +17,6 @@ putting your assets at risk.
 -   Instant buying and selling
 -   Price index powered by BitcoinAverage
 -   Mobile friendly design
+
+[www.coinsim.net](www.coinsim.net)
+----------------------------------
