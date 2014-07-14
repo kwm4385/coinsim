@@ -19,9 +19,6 @@ import static play.data.Form.form;
 
 /**
  * Settings -> Email page.
- * <p/>
- * User: yesnault
- * Date: 23/06/12
  */
 @Security.Authenticated(Secured.class)
 public class Email extends Controller {

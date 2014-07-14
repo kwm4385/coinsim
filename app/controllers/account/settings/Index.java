@@ -7,9 +7,6 @@ import play.mvc.Security;
 
 /**
  * Index Settings page.
- *
- * User: yesnault
- * Date: 15/05/12
  */
 @Security.Authenticated(Secured.class)
 public class Index extends Controller {

@@ -13,8 +13,7 @@ import views.html.account.settings.password;
 import java.net.MalformedURLException;
 
 /**
- * User: yesnault
- * Date: 15/05/12
+ * Password reset
  */
 @Security.Authenticated(Secured.class)
 public class Password extends Controller {

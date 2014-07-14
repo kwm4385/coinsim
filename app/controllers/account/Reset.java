@@ -27,10 +27,6 @@ import static play.data.Form.form;
  * - ask for an email address.
  * - send a link pointing them to a reset page.
  * - show the reset page and set them reset it.
- * <p/>
- * <p/>
- * User: yesnault
- * Date: 20/01/12
  */
 public class Reset extends Controller {
 
