@@ -18,5 +18,5 @@ putting your assets at risk.
 -   Price index powered by BitcoinAverage
 -   Mobile friendly design
 
-[www.coinsim.net](www.coinsim.net)
-----------------------------------
+<a href="http://www.coinsim.net">coinsim.net</a>
+------------------------------------------------
